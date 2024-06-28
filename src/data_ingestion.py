@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from pathlib import Path
 
 
@@ -40,3 +39,7 @@ def main():
                                            filter_value=filter_value)
     # save the final dataframe to save location
     save_data(df=df_final,save_path=data_save_path)
+    
+
+if __name__ == "__main__":
+    main()
