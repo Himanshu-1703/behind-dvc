@@ -23,7 +23,11 @@ def filter_length_of_membership(df: pd.DataFrame, filter_value: int) -> pd.DataF
     column_name = "Length of Membership"
     df_filtered = df.loc[df[column_name].ge(filter_value), :]
     return df_filtered
-   
+ 
+def drop_column(df: pd.DataFrame, column_name: str) -> pd.DataFrame:
+    df_new = df.drop(columns=[column_name])
+    return df_new
+  
     
 def main():
     root_path = Path(__file__).parent.parent
@@ -33,8 +37,10 @@ def main():
     df = read_data_from_url(URL)
     # select only numerical columns
     df_numerical = select_numerical_only(df=df)
+    # drop column avg session length
+    df_numerical = drop_column(df=df_numerical,column_name='Avg. Session Length')
     # filter the data based on condition
-    filter_value = 3
+    filter_value = 1
     df_final = filter_length_of_membership(df=df_numerical,
                                            filter_value=filter_value)
     # save the final dataframe to save location
